@@ -14,12 +14,19 @@ const defaultFormFields = {
   displayName: "",
   email: "",
   password: "",
-  confirmPassword: "",
+  confirmPassword: ""
 };
 
+
 const SignUpForm = () => {
+ 
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { displayName, email, password, confirmPassword } = formFields;
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormFields({ ...formFields, [name]: value });
+  };
 
   const resetFormFields = () => {
     setFormFields(defaultFormFields);
@@ -45,11 +52,6 @@ const SignUpForm = () => {
       alert("Passwords do not match");
       return;
     }
-  };
-
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    setFormFields({ ...formFields, [name]: value });
   };
 
   return (
