@@ -9,9 +9,9 @@ const ItemQuantity = ({ id, quantity }) => {
 
   return (
     <div>
-      <span onClick={decreaseItemQuantity}>{`<`}</span>
+      <span onClick={decreaseItemQuantity}>&#10094;</span>
       <span> {quantity} </span>
-      <span onClick={addItemQuantity}>{`>`}</span>
+      <span onClick={addItemQuantity}>&#10095;</span>
     </div>
   );
 };
