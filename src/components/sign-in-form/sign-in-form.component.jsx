@@ -1,15 +1,15 @@
 import { useState } from "react";
 
 import {
-  createUserDocumentFromAuth,
   signInWithGooglePopup,
-  signInUserWithEmailAndPassword
+  signInUserWithEmailAndPassword,
 } from "../../utils/firebase/firebase.utils";
 
 import FormInput from "../form-input/form-input.component";
-import "./sign-in-form.styles.scss";
+import "./sign-in-form.styles.jsx";
 
-import Button from "../button/button.component";
+import Button, { BUTTON_TYPES_CLASSES } from "../button/button.component";
+import { ButtonsContainer, SignInContainer } from "./sign-in-form.styles.jsx";
 
 const defaultFormFields = {
   displayName: "",
@@ -34,15 +34,15 @@ const SignInForm = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    try{
+    try {
       const { user } = await signInUserWithEmailAndPassword(email, password);
       resetFormFields();
-    }catch(error){
-      switch(error.code){
-        case 'auth/wrong-password':
+    } catch (error) {
+      switch (error.code) {
+        case "auth/wrong-password":
           alert("Incorrect password or email");
           break;
-        case 'auth/user-not-found':
+        case "auth/user-not-found":
           alert("User not found!");
           break;
         default:
@@ -57,7 +57,7 @@ const SignInForm = () => {
   };
 
   return (
-    <div className="sign-in-container">
+    <SignInContainer>
       <h2>I already have an account</h2>
       <span>Sign in with your email and password</span>
       <form onSubmit={handleSubmit}>
@@ -78,14 +78,18 @@ const SignInForm = () => {
           name="password"
           value={password}
         />
-        <div className='buttons-container'>
+        <ButtonsContainer>
           <Button type="submit">Sign In</Button>
-          <Button type='button' buttonType="google" onClick={signInWithGoogle}>
+          <Button
+            type="button"
+            buttonType={BUTTON_TYPES_CLASSES.google}
+            onClick={signInWithGoogle}
+          >
             Google Sign In
           </Button>
-        </div>
+        </ButtonsContainer>
       </form>
-    </div>
+    </SignInContainer>
   );
 };
 
