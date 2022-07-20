@@ -1,6 +1,5 @@
 import styled from "styled-components";
 
-
 export const BackgroundImage = styled.div`
   width: 100%;
   height: 100%;
@@ -55,10 +54,6 @@ export const DirectoryItemContainer = styled.div`
     & ${Body} {
       opacity: 0.9;
     }
-  }
-
-  &.large {
-    height: 380px;
   }
 
   &:first-child {
